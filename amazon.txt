@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class EmployeeAttendance {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Employee details
+        System.out.print("Enter Employee ID: ");
+        int employeeId = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Employee Name: ");
+        String employeeName = sc.nextLine();
+
+        // Attendance for 7 working days
+        int[] attendance = new int[7];
+        int presentDays = 0;
+        int absentDays = 0;
+
+        System.out.println("Enter attendance for 7 days (1 = Present, 0 = Absent):");
+
+        for (int i = 0; i < 7; i++) {
+            System.out.print("Day " + (i + 1) + ": ");
+            attendance[i] = sc.nextInt();
+
+            if (attendance[i] == 1) {
+                presentDays++;
+            } else {
+                absentDays++;
+            }
+        }
+
+        // Calculate attendance percentage
+        double attendancePercentage = (presentDays / 7.0) * 100;
+
+        // Determine incentive eligibility
+        boolean eligible = attendancePercentage >= 90.0;
+
+        // Display attendance report
+        System.out.println("\n----- Attendance Report -----");
+        System.out.println("Employee ID   : " + employeeId);
+        System.out.println("Employee Name : " + employeeName);
+
+        System.out.print("Attendance    : ");
+        for (int i = 0; i < 7; i++) {
+            System.out.print(attendance[i] + " ");
+        }
+
+        System.out.println("\nPresent Days  : " + presentDays);
+        System.out.println("Absent Days   : " + absentDays);
+        System.out.printf("Attendance %%  : %.2f%%\n", attendancePercentage);
+
+        if (eligible) {
+            System.out.println("Incentive      : Eligible");
+        } else {
+            System.out.println("Incentive      : Not Eligible");
+        }
+
+        sc.close();
+    }
+}
