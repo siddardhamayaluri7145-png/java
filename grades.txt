@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] marks = new int[n];
+        int[] count = new int[5];
+        char[] grades = new char[n];
+
+        int sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            marks[i] = sc.nextInt();
+            sum += marks[i];
+
+            if (marks[i] >= 90) {
+                grades[i] = 'A';
+                count[0]++;
+            } 
+            else if (marks[i] >= 80) {
+                grades[i] = 'B';
+                count[1]++;
+            } 
+            else if (marks[i] >= 70) {
+                grades[i] = 'C';
+                count[2]++;
+            } 
+            else if (marks[i] >= 60) {
+                grades[i] = 'D';
+                count[3]++;
+            } 
+            else {
+                grades[i] = 'F';
+                count[4]++;
+            }
+        }
+
+        System.out.print("Grades: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(grades[i]);
+            if (i < n - 1) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println();
+
+        System.out.println("A=" + count[0] +
+                           ", B=" + count[1] +
+                           ", C=" + count[2] +
+                           ", D=" + count[3] +
+                           ", F=" + count[4]);
+
+        double average = (double) sum / n;
+        System.out.printf("Average = %.1f%n", average);
+
+        sc.close();
+    }
+}
